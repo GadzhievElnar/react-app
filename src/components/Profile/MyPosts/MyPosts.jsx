@@ -10,8 +10,8 @@ const MyPosts = () => {
             New post
         </div>
         <div className={styles.posts}>
-            <Post></Post>
-            <Post></Post>
+            <Post message='Hi, how are you?'></Post>
+            <Post message='It`s my first post'></Post>
         </div>
     </div>
     );
