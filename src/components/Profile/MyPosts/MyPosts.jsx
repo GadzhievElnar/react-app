@@ -10,8 +10,8 @@ const MyPosts = () => {
             New post
         </div>
         <div className={styles.posts}>
-            <Post message='Hi, how are you?'></Post>
-            <Post message='It`s my first post'></Post>
+            <Post message='Hi, how are you?' likeCount='15'></Post>
+            <Post message='It`s my first post' likeCount='20'></Post>
         </div>
     </div>
     );
