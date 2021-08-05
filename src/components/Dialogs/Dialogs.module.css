@@ -13,16 +13,9 @@
     color:gold;
 }
 
-.dialog{
-
-
-}
 
 .messages{
 grid-area: m;
 padding: 10px;
 }
 
-.message{
-
-}
