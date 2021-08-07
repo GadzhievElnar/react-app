@@ -6,8 +6,11 @@ const MyPosts = () => {
 
     let postsData = [
         {id: 1, message: 'Hi, how are you?', likesCount: 15},
-        {id: 2, message: 'It`s my first post', likesCount: 20}        
+        {id: 2, message: 'It`s my first post', likesCount: 20},
+        {id: 2, message: 'Array method MAP', likesCount: 10}         
     ];
+
+    let postsElements = postsData.map( post => <Post id={post.id} message={post.message} likeCount={post.likesCount} /> );
 
     return(
     <div className={styles.postsBlock}>
@@ -21,8 +24,7 @@ const MyPosts = () => {
             </div>            
         </div>
         <div className={styles.posts}>
-            <Post id={postsData[0].id} message={postsData[0].message} likeCount={postsData[0].likesCount} />
-            <Post id={postsData[1].id} message={postsData[1].message} likeCount={postsData[1].likesCount} />
+            { postsElements }
         </div>
     </div>
     );
