@@ -2,9 +2,11 @@ import react from 'react';
 import styles from './Friend.module.css';
 
 let Friend = (props) => {
+    debugger;
     return(
         <div>
-            <img src={props.imgSrc} className={styles.ava}></img>
+            <div><img src={props.data.imgSrc} className={styles.ava}></img></div>
+            <div><span>{props.data.name}</span></div>
         </div>
     );
 }
