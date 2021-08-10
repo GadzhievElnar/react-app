@@ -1,3 +1,5 @@
+import { RenderEntireTree } from "./../render";
+
 let state = {
     profilePage: {
         posts: [
@@ -46,6 +48,7 @@ export let addPost = (postMessage) => {
 
   state.profilePage.posts.push(newPost);
   alert(postMessage);
+  RenderEntireTree(state, addPost);
 } 
 
 export default state;
