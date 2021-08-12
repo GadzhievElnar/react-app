@@ -5,7 +5,7 @@ import styles from './NavBar.module.css';
 console.log(styles);
 
 const NavBar = (props) => {
-    debugger;
+
     return (
         <nav className={styles.nav}>
             <div className={styles.item}>

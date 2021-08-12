@@ -10,15 +10,14 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-
 const App = (props) => {  
   return (
       <div className='app-wrapper'>
         <Header />
         <NavBar state={props.appState.navBar}/>
         <div className='app-wrapper-content'>          
-          <Route render={() => <Profile state={props.appState.profilePage} addPost={props.addPost}/>} path='/Profile'/>          
-          <Route render={() => <Dialogs state={props.appState.dialogsPage}/>} path='/Dialogs'/>     
+          <Route render={() => <Profile profilePage={props.appState.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>} path='/Profile'/>          
+          <Route render={() => <Dialogs state={props.appState.dialogsPage} addMessage={props.addMessage} updateNewMessageText={props.updateNewMessageText}/>} path='/Dialogs'/>     
           <Route component={News} path='/News' />
           <Route component={Music} path='/Music' />
           <Route component={Settings} path='/Settings' /> 

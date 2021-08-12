@@ -3,7 +3,6 @@ import Friend from './Friend/Friend';
 import styles from './FriendsPanel.module.css';
 
 const FriendsPanel = (props) => {
-    debugger;
     let friendsComponents = props.friends.map((f) => <Friend data={f}/>);
 
     return(

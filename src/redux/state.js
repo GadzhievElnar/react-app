@@ -6,7 +6,8 @@ let state = {
             {id: 1, message: 'Hi, how are you?', likesCount: 15},
             {id: 2, message: 'It`s my first post', likesCount: 20},
             {id: 2, message: 'Array method MAP', likesCount: 10}         
-          ]
+          ],
+          newPostText: 'it-kamasutra'
     },
 
     dialogsPage: {
@@ -27,7 +28,9 @@ let state = {
             {id: 1, message: 'Hi'},
             {id: 1, message: 'Ee'},
             {id: 1, message: 'Yo'}
-          ]
+          ],
+
+          newMessageText: ''
     },
 
     navBar: {
@@ -39,16 +42,44 @@ let state = {
 }
 
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
   let newPost = {
     id: 11,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 0
   };
 
   state.profilePage.posts.push(newPost);
-  alert(postMessage);
-  RenderEntireTree(state, addPost);
+  state.profilePage.newPostText = '';
+  callRender();
 } 
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  callRender();
+}
+
+
+export let addMessage = () => {
+  debugger;
+  let newMessage = {id: 1, message: state.dialogsPage.newMessageText};
+
+  state.dialogsPage.messages.push(newMessage);
+
+  state.dialogsPage.newMessageText = '';
+
+  callRender();
+}
+
+export let updateNewMessageText = (newText) => {
+  state.dialogsPage.newMessageText = newText;
+  callRender();
+}
+
+function callRender(){
+  RenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);  
+}
+
+window.state = state;
 
 export default state;
