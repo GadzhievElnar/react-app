@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import DialogItem from './Dialog/DialogItem';
 import styles from './Dialogs.module.css';
 import Message from './Mesage/Message';
@@ -11,12 +10,14 @@ const Dialogs = (props) => {
 
     let newMessageElement = React.createRef();
 
-    let addMes = () => {        
-        props.addMessage();
+    let addMes = () => { 
+        let action = {type: 'ADD-MESSAGE'};
+        props.dispatch(action);               
     }
 
     let onNewMessageTextChange = () => {
-        props.updateNewMessageText(newMessageElement.current.value);
+        let action = {type: 'UPDATE-NEW-MESSAGE-TEXT', newText: newMessageElement.current.value};
+        props.dispatch(action);        
     }
 
     return (
