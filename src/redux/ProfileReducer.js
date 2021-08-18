@@ -16,8 +16,18 @@ const updateNewPostText = (state, newText) => {
     state.newPostText = newText;
 }
 
-const ProfileReducer = (state, action) => {
 
+let initialState = {
+  posts: [
+    { id: 1, message: 'Hi, how are you?', likesCount: 15 },
+    { id: 2, message: 'It`s my first post', likesCount: 20 },
+    { id: 2, message: 'Array method MAP', likesCount: 10 }
+  ],
+  newPostText: 'it-kamasutra'
+}
+
+const ProfileReducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) {
         case ADD_POST:
             addPost(state);
