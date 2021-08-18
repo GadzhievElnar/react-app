@@ -4,10 +4,11 @@ import styles from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
+    let state = props.store.getState().profilePage;
     return (
         <div className={styles.content}>
             <ProfileInfo />
-            <MyPosts profilePage={props.profilePage} dispatch={props.dispatch}/>
+            <MyPosts profilePage={state} dispatch={props.store.dispatch.bind(props.store)}/>
         </div>
     );
 }

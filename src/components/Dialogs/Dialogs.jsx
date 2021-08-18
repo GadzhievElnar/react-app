@@ -5,34 +5,37 @@ import styles from './Dialogs.module.css';
 import Message from './Mesage/Message';
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map( dialog => <DialogItem id={dialog.id} name={dialog.name} /> );
+debugger;
+    let state = props.store.getState().dialogsPage;
 
-    let messagesElements =  props.state.messages.map( message => <Message id={message.id} message={message.message} />);
+    let dialogsElements = state.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name} />);
 
-    let newMessageElement = React.createRef();
-
-    let addMes = () => { 
+    let messagesElements = state.messages.map(message => <Message id={message.id} message={message.message} />);
+    
+    let addMes = () => {
         let action = addMessageActionCreator();
-        props.dispatch(action);               
+        props.store.dispatch(action);
     }
 
-    let onNewMessageTextChange = () => {
-        let action = updateNewMessageTextActionCreator(newMessageElement.current.value);
-        props.dispatch(action);        
+    let onNewMessageTextChange = (e) => {
+        let mes = e.target.value;
+        let action = updateNewMessageTextActionCreator(mes);
+        props.store.dispatch(action);
     }
 
     return (
         <div className={styles.dialogs}>
-            <div className={styles.dialogsItems}>   
-                { dialogsElements }                
+            <div className={styles.dialogsItems}>
+                {dialogsElements}
             </div>
             <div className={styles.messages}>
-                { messagesElements }
-            </div> 
+                {messagesElements}
+            </div>
 
-            <textarea ref={newMessageElement} 
-            value={props.state.newMessageText} 
-            onChange={onNewMessageTextChange}></textarea>           
+            <textarea value={state.newMessageText}
+                      onChange={onNewMessageTextChange}>
+
+            </textarea>
             <button onClick={addMes}>Add message</button>
         </div>
     );

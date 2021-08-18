@@ -132,6 +132,7 @@ let store = {
 
   //у action обязательно свойство type
   dispatch(action) {
+    debugger;
     switch (action.type) {
       case ADD_POST: this._addPost(); break;
       case UPDATE_NEW_POST_TEXT: this._updateNewPostText(action.newText); break;
