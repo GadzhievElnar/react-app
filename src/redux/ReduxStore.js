@@ -6,7 +6,7 @@ import ProfileReducer from "./ProfileReducer";
 //combine - сочетать, комбинировать, совмещать, объединять
 //в функцию нужно передать объект состоящий из полей
 //где имя поля это имя куска state а его значение это reducer который за этот кусок отвечает
-
+debugger;
 let reducers = combineReducers(
     {
         profilePage: ProfileReducer,
