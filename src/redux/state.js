@@ -1,42 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-
-export const addPostActionCreator = () => {
-  return (
-    {
-      type: ADD_POST
-    }
-  )
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-  return (
-    {
-      type: UPDATE_NEW_POST_TEXT,
-      newText: text
-    }
-  )
-}
-
-export const addMessageActionCreator = () => {
-  return (
-    {
-      type: ADD_MESSAGE
-    }
-  )
-}
-
-export const updateNewMessageTextActionCreator = (text) => {
-  return (
-    {
-      type: UPDATE_NEW_MESSAGE_TEXT,
-      newText: text
-    }
-  )
-}
-
+import ProfileReducer from "./ProfileReducer";
+import DialogsReducer from "./DialogsReducer";
+import NavBarReducer from "./NavBarReducer";
 
 let store = {
 
@@ -81,42 +45,7 @@ let store = {
     }
   },
 
-  _addPost() {
-    debugger;
-    let newPost = {
-      id: 11,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0
-    };
 
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callObserver(this._state);
-  },
-
-  _updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callObserver(this._state);
-  },
-
-  _addMessage() {
-    let newMessage =
-    {
-      id: 1,
-      message: this._state.dialogsPage.newMessageText
-    };
-
-    this._state.dialogsPage.messages.push(newMessage);
-
-    this._state.dialogsPage.newMessageText = '';
-
-    this._callObserver(this._state);
-  },
-
-  _updateNewMessageText(newText) {
-    this._state.dialogsPage.newMessageText = newText;
-    this._callObserver(this._state);
-  },
 
   _callObserver() {
     console.log('store callObserver');
@@ -130,16 +59,12 @@ let store = {
     return this._state;
   },
 
-  //у action обязательно свойство type
   dispatch(action) {
-    debugger;
-    switch (action.type) {
-      case ADD_POST: this._addPost(); break;
-      case UPDATE_NEW_POST_TEXT: this._updateNewPostText(action.newText); break;
-      case ADD_MESSAGE: this._addMessage(); break;
-      case UPDATE_NEW_MESSAGE_TEXT: this._updateNewMessageText(action.newText); break;
-      default: break;
-    }
+    this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
+    this._state.navBar = NavBarReducer(this._state.navBar, action);
+
+    this._callObserver(this._state);
   }
 }
 
