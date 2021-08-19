@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import StoreContext, { Provider } from './StoreContext';
 
 export let RenderEntireTree = (state) => {
   debugger;
   ReactDOM.render(
     <BrowserRouter>
       <React.StrictMode>
-        <App store={store}/>
+        <Provider store={store}>
+          <App/>
+        </Provider>        
       </React.StrictMode>
     </BrowserRouter>,
     document.getElementById('root')

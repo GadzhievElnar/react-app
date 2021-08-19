@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import FriendsPanel from './FriendsPanel/FriendsPanel';
+import FriendsPanelContainer from './FriendsPanel/FriendsPanelContainer';
 import styles from './NavBar.module.css';
-console.log(styles);
 
 const NavBar = (props) => {
 
@@ -24,7 +23,7 @@ const NavBar = (props) => {
                 <NavLink to='/Settings' activeClassName={styles.activeLink}>Settings</NavLink>
             </div>
 
-            <FriendsPanel store={props.store}></FriendsPanel>
+            <FriendsPanelContainer />
         </nav>
     );
 }

@@ -1,11 +1,8 @@
-import react from 'react';
 import Friend from './Friend/Friend';
-import styles from './FriendsPanel.module.css';
 
-const FriendsPanel = (props) => {
-    let state = props.store.getState().navBar;
+const FriendsPanel = (props) => {    
 
-    let friendsComponents = state.friends.map((f) => <Friend data={f}/>);
+    let friendsComponents = props.friends.map((f) => <Friend data={f}/>);
 
     return(
         <div>
