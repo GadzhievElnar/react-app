@@ -1,22 +1,12 @@
-import StoreContext from '../../../StoreContext';
+import { connect } from 'react-redux';
 import FriendsPanel from './FriendsPanel';
 
-const FriendsPanelContainer = () => {
-    return (
-        <StoreContext.Consumer> 
-            {
-                (store) => {
-                    let state = store.getState();
-
-                    return (
-                        <div>
-                            <FriendsPanel friends={state.navBar.friends}></FriendsPanel>
-                        </div>
-                    );
-                }
-            }
-        </StoreContext.Consumer>
-    );
+let mapStateToProps = (state) => {
+    return {
+        friends: state.navBar.friends
+    }
 }
+
+const FriendsPanelContainer = connect(mapStateToProps)(FriendsPanel);
 
 export default FriendsPanelContainer;
