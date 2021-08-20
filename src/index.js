@@ -7,10 +7,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// import StoreContext, { Provider } from './StoreContext';
 
-export let RenderEntireTree = (state) => {
-  debugger;
   ReactDOM.render(
     <BrowserRouter>
       <React.StrictMode>
@@ -21,17 +18,7 @@ export let RenderEntireTree = (state) => {
     </BrowserRouter>,
     document.getElementById('root')
   );
-}
 
-RenderEntireTree(store.getState());
-
-store.subscribe(RenderEntireTree);
-
-//Если бы в RenderEntireTree было бы необходимо передовать state
-// store.subscribe(() => {
-//   let state = store.getState();
-//   RenderEntireTree(state);
-// });
 
 
 
