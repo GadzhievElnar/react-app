@@ -3,14 +3,13 @@ import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-debugger;
     let postsElements = props.posts.map(post => <Post id={post.id} message={post.message} likeCount={post.likesCount} />);
 
     let onPostChange = (event) => {
         let text = event.target.value;     
         props.updateNewPostText(text);
     }
-    debugger;
+
 
     return (
         <div className={styles.postsBlock}>
