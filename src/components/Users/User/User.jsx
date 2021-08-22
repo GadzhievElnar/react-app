@@ -1,11 +1,9 @@
 import styles from './User.module.css'
-
-const User = (props) => {
-    debugger;
-    
+import userPhoto from '../../../resources/images/default_ava.jpg'
+const User = (props) => {    
     return(
         <div key={props.user.id}>
-            <img src={props.user.photoURL} height='50px' width='50px'/>
+            <img src={props.user.photos.small != null ? props.user.small : userPhoto} height='50px' width='50px'/>
             <span>{props.user.id}</span>
             <span>{props.user.FullName}</span>
             <div>{props.user.followed ? <span>followed</span> : <span>unfollowed</span>}</div>
