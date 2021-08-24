@@ -5,13 +5,10 @@ import User from './User/User';
 class UsersClassComponent extends React.Component {
     constructor(props) {
         super(props);
-        if (this.props.users.length === 0) {
-            debugger;
-            axios
-                .get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => (this.props.setUsers(response.data.items)));
-            debugger;
-        }
+    }
+
+    componentDidMount() {
+        this.getUsers();
     }
 
     getUsers = () => {
