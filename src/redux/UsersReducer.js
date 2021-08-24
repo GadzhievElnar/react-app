@@ -1,14 +1,14 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 let initialState = {
-    users:[
-        // {id: 1, followed: false, FullName: 'Artem', status: 'I am Analitic', location: {city: 'Rostov on Don', Country: 'Russia'}, photoURL: 'https://w7.pngwing.com/pngs/300/499/png-transparent-bart-simpson-bart-simpson-homer-simpson-lisa-simpson-marge-simpson-drawing-bart-simpson-springfield-cartoon-fictional-character.png'},
-        // {id: 2, followed: true, FullName: 'Tania', status: 'I am Soprovozdenie', location: {city: 'Acsay', Country: 'Russia'}, photoURL: 'https://pbs.twimg.com/media/DytbnDyWwAEq9gW.jpg'},
-        // {id: 3, followed: true, FullName: 'Dimas', status: 'I am Sviazist', location: {city: 'Rostov on Don', Country: 'Russia'}, photoURL: 'https://avatarko.ru/img/kartinka/28/multfilm_Futurama_Bender_27624.jpg'},
-        // {id: 4, followed: false, FullName: 'Serega', status: 'I am Gruzchik', location: {city: 'Belaya Kalitva', Country: 'Russia'}, photoURL: 'https://e7.pngegg.com/pngimages/13/178/png-clipart-spongebob-squarepants-illustration-graphy-computer-icons-sponge-bob-cartoon-spongebob-squarepants.png'}
-    ]
+    users:[],
+    pageSize: 5,
+    totalUsersCount: 100,
+    currentPage: 1    
 }
 
 const UsersReducer = (state = initialState, action) => {
@@ -50,8 +50,21 @@ const UsersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state, 
-                users: [...state.users, ...action.users]
+                users: [ ...action.users]
             }
+
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.newPageNumber
+            }
+        
+        case SET_TOTAL_USERS_COUNT:
+            return{
+                ...state,
+                totalUsersCount: action.totalUsersCount
+            }
+
         default: return state; 
     }
 }
@@ -59,5 +72,7 @@ const UsersReducer = (state = initialState, action) => {
 export const followActionCreator = (userId) => ({type: FOLLOW, userId})
 export const unfollowActionCreator = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersActionCreator = (users) => ({type: SET_USERS, users})
+export const setCurrentPageActionCreator = (newPageNumber) => ({type: SET_CURRENT_PAGE, newPageNumber})
+export const setTotalUsersCountActionCreator = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 
 export default UsersReducer;
