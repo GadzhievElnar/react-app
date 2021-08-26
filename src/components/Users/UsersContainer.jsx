@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import { followActionCreator, setCurrentPageActionCreator, setToogleIsFetchingActionCreator, setTotalUsersCountActionCreator, setUsersActionCreator, unfollowActionCreator } from "../../redux/UsersReducer";
+import { follow, setCurrentPage, setToogleIsFetching, 
+    setTotalUsersCount, setUsers, unfollow } from "../../redux/UsersReducer";
 import axios from 'axios';
 import React from 'react';
 import Users from './Users';
@@ -58,17 +59,24 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => { dispatch(followActionCreator(userId)) },
-        unfollow: (userId) => { dispatch(unfollowActionCreator(userId)) },
-        setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
-        setCurrentPage: (newPageNumber) => { dispatch(setCurrentPageActionCreator(newPageNumber)) },
-        setTotalUsersCount: (totalUsersCount) => { dispatch(setTotalUsersCountActionCreator(totalUsersCount)) }, 
-        setToogleIsFetching: (isFetching) => { dispatch(setToogleIsFetchingActionCreator(isFetching)) }            
-    }
-}
+// let mapDispatchToProps_old = (dispatch) => {
+//     return {
+//         follow: (userId) => { dispatch(followActionCreator(userId)) },
+//         unfollow: (userId) => { dispatch(unfollowActionCreator(userId)) },
+//         setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
+//         setCurrentPage: (newPageNumber) => { dispatch(setCurrentPageActionCreator(newPageNumber)) },
+//         setTotalUsersCount: (totalUsersCount) => { dispatch(setTotalUsersCountActionCreator(totalUsersCount)) }, 
+//         setToogleIsFetching: (isFetching) => { dispatch(setToogleIsFetchingActionCreator(isFetching)) }            
+//     }
+// }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassComponent);
+const UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setToogleIsFetching
+})(UsersClassComponent);
 
 export default UsersContainer;
