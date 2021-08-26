@@ -1,9 +1,12 @@
 import styles from './User.module.css'
 import userPhoto from '../../../resources/images/default_ava.jpg'
+import { NavLink } from 'react-router-dom';
 const User = (props) => {    
     return(
         <div key={props.user.id}>
-            <img src={props.user.photos.small != null ? props.user.small : userPhoto} height='50px' width='50px'/>
+            <NavLink to={`/profile/${props.user.id}`}>
+                <img src={props.user.photos.small != null ? props.user.small : userPhoto} height='50px' width='50px'/>
+            </NavLink>
             <span>{props.user.id}</span>
             <span>{props.user.FullName}</span>
             <div>{props.user.followed ? <span>followed</span> : <span>unfollowed</span>}</div>
