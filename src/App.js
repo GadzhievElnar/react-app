@@ -19,7 +19,7 @@ const App = (props) => {
         <Header />
         <NavBar />
         <div className='app-wrapper-content'>          
-          <Route render={() => <ProfileContainer />} path='/Profile'/>          
+          <Route render={() => <ProfileContainer />} path='/Profile/:userID?/:newParam?'/>          
           <Route render={() => <DialogsContainer />} path='/Dialogs'/>     
           <Route component={News} path='/News' />
           <Route component={Music} path='/Music' />
