@@ -4,7 +4,7 @@ import styles from './Users.module.css';
 
 const Users = (props) => {
     debugger;
-    let usersElements = props.users.map(user => { return (<User user={user} follow={props.follow} unfollow={props.unfollow} />) });
+    let usersElements = props.users.map(user => { return (<User user={user} follow={props.follow} unfollow={props.unfollow} followingInProgress={props.followingInProgress}/>) });
     let pages = [];
 
     let pagesCount = Math.ceil(props.totalUsersCount/props.pageSize);
