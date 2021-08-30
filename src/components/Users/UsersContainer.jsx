@@ -5,6 +5,7 @@ import axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
+import { usersAPI } from "../../API/api";
 
 class UsersClassComponent extends React.Component {
     constructor(props) {
@@ -21,13 +22,10 @@ class UsersClassComponent extends React.Component {
         this.props.setCurrentPage(pageNumber);
         this.props.setToogleIsFetching(true);
         
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
-                debugger;
-                
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {              
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
                 this.props.setToogleIsFetching(false);
             });
         
@@ -37,28 +35,12 @@ class UsersClassComponent extends React.Component {
         this.getUsers(pageNumber);
     }
 
-    onFollow = (userId) => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, { withCredentials: true, 
-    headers: {"API-KEY": "29c0fdac-3d88-4deb-a0b7-38ce835f7852"}})
-             .then(response => {
-                 if (response.data.resultCode === 0)
-                 {
-                    this.props.follow(userId); 
-                 }
-             })
-
-    }
+    onFollow = (userId) => { usersAPI.follow(userId).then(resultCode => 
+      { if (resultCode === 0) { debugger; this.props.follow(userId); }})}
     
     onUnFollow = (userId) => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, { withCredentials: true, 
-        headers: {"API-KEY": "29c0fdac-3d88-4deb-a0b7-38ce835f7852"} })
-        .then(response => {
-            if (response.data.resultCode === 0)
-            {
-               this.props.unfollow(userId); 
-            } 
-        })     
-    }
+        usersAPI.unFollow(userId).then( resultCode =>
+            { if (resultCode === 0) { debugger; this.props.unfollow(userId); }})}
 
     render() {
         return (
