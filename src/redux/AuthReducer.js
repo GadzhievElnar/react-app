@@ -1,4 +1,4 @@
-import { usersAPI } from '../API/api'
+import { authAPI } from '../API/api'
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -22,8 +22,8 @@ export const setAuthUserData = (userId, email, login) => {
     return { type: SET_USER_DATA, userData: { userId, email, login } }
 }
 
-export const authMeThunkCreator = () => (dispatch) => {
-    usersAPI.authMe()
+export const getAuthUserDataThunkCreator = () => (dispatch) => {
+    authAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(setAuthUserData(

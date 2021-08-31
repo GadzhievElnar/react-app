@@ -12,11 +12,6 @@ export const usersAPI = {
             .then(response => response.data);
     },
 
-    authMe() {
-        return axiosInstance.get(`/auth/me`, { withCredentials: true })
-            .then(response => response.data);
-    },
-
     getProfile(userId) {
         return axiosInstance.get(`/profile/${userId}`)
             .then(response => response.data);
@@ -31,4 +26,12 @@ export const usersAPI = {
         return axiosInstance.delete(`/follow/${userId}`)
             .then(response => { debugger; return response.data.resultCode });
     }
+}
+
+export const authAPI = {
+    me() {
+        return axiosInstance.get(`/auth/me`, { withCredentials: true })
+            .then(response => response.data);
+    }
+
 }
