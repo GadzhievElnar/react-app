@@ -78,7 +78,7 @@ const UsersReducer = (state = initialState, action) => {
                 followingInProgress:
                     action.inProgress
                         ? [...state.followingInProgress, action.idUser]
-                        : state.followingInProgress.filter(id => id != action.idUser)
+                        : state.followingInProgress.filter(id => id !== action.idUser)
             }
 
 
@@ -119,7 +119,7 @@ export const followThunkCreator = (userId) => (dispatch) => {
 }
 
 export const unFollowThunkCreator = (userId) => (dispatch) => {
-    setToogleIsFollowingInProgress(true, userId);
+    dispatch(setToogleIsFollowingInProgress(true, userId));
     usersAPI.unFollow(userId)
         .then(resultCode => {
             if (resultCode === 0) 

@@ -23,6 +23,10 @@ const NavBar = (props) => {
                 <NavLink to='/Settings' activeClassName={styles.activeLink}>Settings</NavLink>
             </div>
 
+            <div className={styles.item}>
+                <NavLink to='/Users' activeClassName={styles.activeLink}>Users</NavLink>
+            </div>            
+
             <FriendsPanelContainer />
         </nav>
     );
