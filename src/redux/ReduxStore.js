@@ -1,9 +1,10 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import AuthReducer from "./AuthReducer";
 import DialogsReducer from "./DialogsReducer";
 import NavBarReducer from "./NavBarReducer";
 import ProfileReducer from "./ProfileReducer";
 import UsersReducer from "./UsersReducer";
+import thunkMiddleware from 'redux-thunk';
 
 //combine - сочетать, комбинировать, совмещать, объединять
 //в функцию нужно передать объект состоящий из полей
@@ -19,7 +20,7 @@ let reducers = combineReducers(
     }
 );
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 export default store;
