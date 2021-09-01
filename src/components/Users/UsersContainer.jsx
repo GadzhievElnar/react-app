@@ -5,6 +5,7 @@ import { getUsersThunkCreator,
 import React from 'react';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
+import WithAuthRedirect from "../../HOC/WithAuthRedirect";
 
 class UsersClassComponent extends React.Component {
     constructor(props) {
@@ -73,4 +74,5 @@ const UsersContainer =
             unFollowThunkCreator }
          )(UsersClassComponent);
 
-export default UsersContainer;
+
+export default WithAuthRedirect(UsersContainer); ;
