@@ -91,13 +91,13 @@ export const setUserProfileThunkCreator = (userId) => (dispatch) => {
 } 
 
 export const setStatusThunkCreator = (userId) => (dispatch) => {
-  debugger; profileAPI.getStatus(userId).then(status => dispatch(setStatusActionCreator(status.data)));
+  profileAPI.getStatus(userId).then(status => dispatch(setStatusActionCreator(status.data)));
 }
 
 export const updateStatusThunkCreator = (status) => (dispatch) => {
   profileAPI.updateStatus(status).then(
     response => {
-      
+      debugger;
       if (response.data.resultCode === 0)
       {
         dispatch(setStatusActionCreator(status));

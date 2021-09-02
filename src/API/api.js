@@ -38,12 +38,11 @@ export const profileAPI = {
             .then(response => response.data);
     },
 
-    getStatus(userId){
-        debugger;
+    getStatus(userId){        
         return axiosInstance.get(`/profile/status/${userId}`)
     },
 
     updateStatus(status){
-        return axiosInstance.get(`/profile/status/`, {status: status})
+        return axiosInstance.put(`/profile/status/`, {status: status})
     }    
 }
