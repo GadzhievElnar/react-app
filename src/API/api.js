@@ -12,11 +12,6 @@ export const usersAPI = {
             .then(response => response.data);
     },
 
-    getProfile(userId) {
-        return axiosInstance.get(`/profile/${userId}`)
-            .then(response => response.data);
-    },
-
     follow(userId) {
         return axiosInstance.post(`/follow/${userId}`)
             .then(response => { debugger; return response.data.resultCode });
@@ -34,4 +29,21 @@ export const authAPI = {
             .then(response => response.data);
     }
 
+}
+
+
+export const profileAPI = {
+    getProfile(userId) {
+        return axiosInstance.get(`/profile/${userId}`)
+            .then(response => response.data);
+    },
+
+    getStatus(userId){
+        debugger;
+        return axiosInstance.get(`/profile/status/${userId}`)
+    },
+
+    updateStatus(status){
+        return axiosInstance.get(`/profile/status/`, {status: status})
+    }    
 }
