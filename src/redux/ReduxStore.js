@@ -5,6 +5,7 @@ import NavBarReducer from "./NavBarReducer";
 import ProfileReducer from "./ProfileReducer";
 import UsersReducer from "./UsersReducer";
 import thunkMiddleware from 'redux-thunk';
+import {reducer as formReducer} from 'redux-form';
 
 //combine - сочетать, комбинировать, совмещать, объединять
 //в функцию нужно передать объект состоящий из полей
@@ -16,7 +17,8 @@ let reducers = combineReducers(
         dialogsPage: DialogsReducer,
         navBar: NavBarReducer,
         usersPage: UsersReducer,
-        authInfo: AuthReducer
+        authInfo: AuthReducer,
+        form: formReducer
     }
 );
 
