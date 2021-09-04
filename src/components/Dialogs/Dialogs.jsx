@@ -1,25 +1,38 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Login from '../Login/Login';
+import { Field, reduxForm } from 'redux-form';
 import DialogItem from './Dialog/DialogItem';
 import styles from './Dialogs.module.css';
 import Message from './Mesage/Message';
+
+const NewMessageForm = (props) => {
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <Field component='textarea' name='newMessageText' placeholder="Новое сообщение"/>
+            <button onSubmit={props.handleSubmit}>Add message</button>
+        </form>
+    )
+}
+
+const NewMessageReduxFrom = reduxForm( 
+    { form: 'newMessage'}
+)(NewMessageForm)
 
 const Dialogs = (props) => {
     let dialogsElements = props.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name} />);
 
     let messagesElements = props.messages.map(message => <Message id={message.id} message={message.message} />);
     
-    let onNewMessageTextChange = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageText(text);
-     }
-
-     debugger;
      if (props.isAuth == false) 
      {
         return <Redirect to="/Login" />;
      }
+
+     const onSubmit = (formData) => {
+        console.log(formData);        
+         props.addMessage(formData.newMessageText);
+        
+    }
 
     return (
         <div className={styles.dialogs}>
@@ -30,11 +43,7 @@ const Dialogs = (props) => {
                 {messagesElements}
             </div>
 
-            <textarea value={props.newMessageText}
-                      onChange={onNewMessageTextChange}>
-
-            </textarea>
-            <button onClick={props.addMessage}>Add message</button>
+            <NewMessageReduxFrom onSubmit={onSubmit}/>
         </div>
     );
 }
