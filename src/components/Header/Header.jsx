@@ -7,7 +7,9 @@ import styles from './Header.module.css';
         <header className={styles.header}>
             <div className={styles.loginBlock}>
                 {
-                    props.authInfo.isAuth ? props.authInfo.login  : <NavLink  to='/login'>Login</NavLink>
+                    props.authInfo.isAuth ? 
+                    <div>{props.authInfo.login} <button onClick={props.logOutThunkCreator}>LogOut</button></div>
+                    : <NavLink  to='/login'>Login</NavLink>
                 }
                  
             </div>
