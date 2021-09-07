@@ -2,8 +2,7 @@ import React from 'react';
 import User from './User/User';
 import styles from './Users.module.css';
 
-const Users = (props) => {
-    debugger;
+const Users = (props) => {    
     let usersElements = props.users.map(user => { return (<User user={user} follow={props.follow} unfollow={props.unfollow} followingInProgress={props.followingInProgress}/>) });
     let pages = [];
 

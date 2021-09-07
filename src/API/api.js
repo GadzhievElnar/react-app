@@ -14,12 +14,12 @@ export const usersAPI = {
 
     follow(userId) {
         return axiosInstance.post(`/follow/${userId}`)
-            .then(response => { debugger; return response.data.resultCode });
+            .then(response => { return response.data.resultCode });
     },
 
     unFollow(userId) {
         return axiosInstance.delete(`/follow/${userId}`)
-            .then(response => { debugger; return response.data.resultCode });
+            .then(response => { return response.data.resultCode });
     }
 }
 

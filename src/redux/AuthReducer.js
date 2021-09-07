@@ -23,26 +23,23 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
     return { type: SET_USER_DATA, userData: { userId, email, login, isAuth } }
 }
 
-export const getAuthUserDataThunkCreator = () => (dispatch) => {
+export const getAuthUserDataThunkCreator = () => (dispatch) => {    
     debugger;
-    authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    debugger;
-                    dispatch(setAuthUserData(
-                        data.data.id,
-                        data.data.email,
-                        data.data.login, 
-                        true));
+    return authAPI.me().then(data => {
+        if (data.resultCode === 0) {                    
+            dispatch(setAuthUserData(
+                data.data.id,
+                data.data.email,
+                data.data.login, 
+                true));
             }
         }
-
-        );
+    );
 }
 
 export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
-    .then(data => { debugger;
+    .then(data => {
         if (data.resultCode === 0) {
             dispatch(getAuthUserDataThunkCreator());
         }

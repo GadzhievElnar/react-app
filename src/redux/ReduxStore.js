@@ -4,6 +4,8 @@ import DialogsReducer from "./DialogsReducer";
 import NavBarReducer from "./NavBarReducer";
 import ProfileReducer from "./ProfileReducer";
 import UsersReducer from "./UsersReducer";
+import AppReducer from "./AppReducer";
+
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
 
@@ -18,6 +20,7 @@ let reducers = combineReducers(
         navBar: NavBarReducer,
         usersPage: UsersReducer,
         authInfo: AuthReducer,
+        app: AppReducer,
         form: formReducer
     }
 );

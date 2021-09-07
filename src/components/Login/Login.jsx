@@ -7,8 +7,7 @@ import { requeredField } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
 import styles from '../Login/Login.module.css';
 
-const LoginForm = (props) => {
-    debugger;
+const LoginForm = (props) => {    
     return (
 
         <form onSubmit={props.handleSubmit}>
@@ -42,9 +41,7 @@ const LoginReduxFrom = reduxForm(
     { form: 'login' }
 )(LoginForm)
 
-const Login = (props) => {
-
-    debugger;
+const Login = (props) => {    
 
     const onSubmit = (formData) => {
         props.loginThunkCreator(formData.login, formData.password, formData.rememberMe);
