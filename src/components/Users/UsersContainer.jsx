@@ -7,7 +7,7 @@ import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
 import WithAuthRedirect from "../../HOC/WithAuthRedirect";
 import { compose } from "redux";
-import { getCurrentPage, getFolowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "./UsersSelectors";
+import { getCurrentPage, getFolowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersSuper } from "./UsersSelectors";
 
 class UsersClassComponent extends React.Component {
     constructor(props) {
@@ -29,6 +29,7 @@ class UsersClassComponent extends React.Component {
     onUnFollow = (userId) => { this.props.unFollowThunkCreator(userId); }
 
     render() {
+        console.log('render UsersContainer;');
         return (
             <>
                 {this.props.isFetching ? <Preloader /> : null}
@@ -49,7 +50,7 @@ class UsersClassComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: getUsers(state),//state.usersPage.users,
+        users: getUsersSuper(state),//getUsers(state),//state.usersPage.users,
         pageSize: getPageSize(state),//state.usersPage.pageSize,
         totalUsersCount: getTotalUsersCount(state),//state.usersPage.totalUsersCount,
         currentPage: getCurrentPage(state),//state.usersPage.currentPage,
