@@ -7,6 +7,7 @@ import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
 import WithAuthRedirect from "../../HOC/WithAuthRedirect";
 import { compose } from "redux";
+import { getCurrentPage, getFolowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "./UsersSelectors";
 
 class UsersClassComponent extends React.Component {
     constructor(props) {
@@ -48,12 +49,12 @@ class UsersClassComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress : state.usersPage.followingInProgress
+        users: getUsers(state),//state.usersPage.users,
+        pageSize: getPageSize(state),//state.usersPage.pageSize,
+        totalUsersCount: getTotalUsersCount(state),//state.usersPage.totalUsersCount,
+        currentPage: getCurrentPage(state),//state.usersPage.currentPage,
+        isFetching: getIsFetching(state),//state.usersPage.isFetching,
+        followingInProgress : getFolowingInProgress(state)//state.usersPage.followingInProgress
     }
 }
 
