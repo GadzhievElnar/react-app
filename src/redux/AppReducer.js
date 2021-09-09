@@ -19,7 +19,6 @@ const AppReducer = (state = initialState, action) => {
 export const setInitialized = () => { return { type: SET_INITIALIZED }}
 
 export const initializeThunkCreator = () => (dispatch) => {   
-    debugger; 
     let promise = dispatch(getAuthUserDataThunkCreator());
     
     Promise.all([promise]).then(() => { dispatch(setInitialized()); });    
