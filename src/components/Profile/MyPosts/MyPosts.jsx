@@ -24,14 +24,16 @@ const NewPostForm = (props) => {
 
 const NewPostReduxFrom = reduxForm({form: 'newPost'})(NewPostForm);
 
-const MyPosts = (props) => {
+
+const MyPosts1 = (props) => {
+    console.log('MyPosts render.');
+
     let postsElements = props.posts.map(post => <Post id={post.id} message={post.message} likeCount={post.likesCount} />);
 
     let onSubmit = (formData) => {  
         props.addPost(formData.newPostText);
     }
-
-
+    
     return (
         <div className={styles.postsBlock}>
             My posts
@@ -44,5 +46,7 @@ const MyPosts = (props) => {
         </div>
     );
 }
+
+const MyPosts = React.memo(MyPosts1);
 
 export default MyPosts;
