@@ -7,10 +7,10 @@ import { requeredField } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
 import styles from '../Login/Login.module.css';
 
-const LoginForm = (props) => {    
+const LoginForm = ({handleSubmit, error}) => {    
     return (
 
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 {/* <input type="text" placeholder="login" /> */}
                 <Field placeholder="login" component={Input} name="login" validate={[requeredField]} />
@@ -24,9 +24,9 @@ const LoginForm = (props) => {
                 <Field placeholder="remember me" component={Input} type="checkbox" name="rememberMe" /> Remember me
             </div>
             {
-                props.error &&
+                error &&
                 <div className={styles.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>
             }
 
